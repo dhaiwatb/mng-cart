@@ -30,6 +30,39 @@
                             </table>
                         </div>
                     </div>
+                    <div class="grid py-2">
+                        <h1>Ordered Products</h1>
+
+                    </div>
+                    <div class="grid py-2">
+
+                        <div class="relative overflow-x-auto">
+                            <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                                <thead>
+                                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                        <th>Product Name</th>
+                                        <th>Product Price</th>
+                                        <th>Quantity</th>
+                                        <th>Product Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($products as $product)
+                                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                            <td>{{ $product->products->name }}</td>    
+                                            <td>{{ $product->products->price }}</td>    
+                                            <td>{{ $product->qty }}</td>    
+                                            <td>{{ $product->qty * $product->products->price }}</td>    
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="grid py-2">
+                        Order Total: {{ $order->product_total }}
+                    </div>
+
                 </div>
             </div>
         </div>

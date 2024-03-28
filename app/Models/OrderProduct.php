@@ -11,7 +11,9 @@ class OrderProduct extends Model
 
     protected $guarded = [];
 
+    public $timestamps = false;
+
     public function products(){
-        return $this->hasMany(Product::class, 'product_id');
+        return $this->belongsTo(Product::class, 'product_id');
     }
 }
