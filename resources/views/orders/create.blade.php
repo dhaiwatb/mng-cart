@@ -28,6 +28,11 @@
                             <div class="select-products">
 
                             </div>
+
+                            <div class="product-total">
+                                <h1>Product Total: </h1>
+                                <p class="total-to-pay"></p>
+                            </div>
                             
                             <div class="mb-5">
                                 <button type="submit" class="w-48 hidden text-white bg-blue-400 hover:bg-blue-500 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" id="add-order" >Add Order</button>
@@ -98,23 +103,42 @@
 
     })
 
+    var total_array = [];
+    
     $(document).on('input', '.product_qty', function(){
+        var sum = 0;
         product_index = $(this).data('product_index')
         //calculate product total
         product_price = parseInt($('#product_price'+product_index).prop('value'))
         product_qty = parseInt($(this).val())
         product_total = parseInt(product_price * product_qty)
         
-
+        
         //set product total value
         $('#product_total'+product_index).prop('value', product_total)
+
+        total_array.push(parseInt($('#product_total'+product_index).prop('value')))
+ 
+        order_to_pay = 0
+        console.log(total_array)
+
+        $.each(total_array,function(){order_to_pay+=parseFloat(this) || 0;});
+
+        $('.total-to-pay').html(order_to_pay)
     })
 
     $(document).on('click', '.remove-product', function(){
         $(this).parent().parent().remove()
+
+        product_index = $(this).data('product_index')
+
+        order_to_pay = 0
+        total_array.splice(product_index, 1)
+
+        $.each(total_array,function(){order_to_pay+=parseFloat(this) || 0;});
+
+        $('.total-to-pay').html(order_to_pay)
     })
 
-    $(document).ready(function(){
-        count = $('.product-container').length
-    })
+    
 </script>
