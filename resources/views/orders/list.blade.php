@@ -62,6 +62,9 @@
                             </table>
                         </div>
                     </div>
+                    <div class="grid py-2">
+                        {{$orders->links()}}
+                    </div>
                     
                 </div>
             </div>

@@ -61,7 +61,7 @@ class OrderController extends Controller
     public function show($id)
     {
         $order_id = intval($id);
-        $order = Order::find($order_id)->first();
+        $order = Order::find($order_id);
 
         return view('orders.view',['order' =>  $order, 'title' => 'View Order']);
     }
